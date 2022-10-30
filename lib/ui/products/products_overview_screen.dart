@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../shared/app_drawer.dart';
 import 'products_grid.dart';
 import '../cart/cart_screen.dart';
 import '../cart/cart_manager.dart';
-import '../shared/app_drawer.dart';
 import 'top_right_badge.dart';
 
 enum FilterOptions { favorites, all }
@@ -16,6 +17,7 @@ class ProductsOverviewScreen extends StatefulWidget {
 
 class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
   var _showOnlyFavorites = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,17 +34,19 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
   }
 
   Widget buildShoppingCartIcon() {
-    return TopRightBadge(
-      data: CartManager().productCount,
-      child: IconButton(
-        icon: const Icon(
-          Icons.shopping_cart,
+    return Consumer<CartManager>(builder: (ctx, cartManager, child) {
+      return TopRightBadge(
+        data: cartManager.productCount,
+        child: IconButton(
+          icon: const Icon(
+            Icons.shopping_cart,
+          ),
+          onPressed: () {
+            Navigator.of(context).pushNamed(CartScreen.routeName);
+          },
         ),
-        onPressed: () {
-          Navigator.of(context).pushNamed(CartScreen.routeName);
-        },
-      ),
-    );
+      );
+    });
   }
 
   Widget buildProductFilterMenu() {
