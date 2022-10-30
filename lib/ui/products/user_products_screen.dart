@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'user_product_list_tile.dart';
 import 'products_manager.dart';
 import '../shared/app_drawer.dart';
+import 'edit_product_screen.dart';
 
 import 'package:provider/provider.dart';
 
@@ -17,7 +18,7 @@ class UserProductsScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Your Product'),
         actions: <Widget>[
-          buildAddButton(),
+          buildAddButton(context),
         ],
       ),
       drawer: const AppDrawer(),
@@ -45,12 +46,14 @@ class UserProductsScreen extends StatelessWidget {
     });
   }
 
-  Widget buildAddButton() {
+  Widget buildAddButton(BuildContext context) {
     return IconButton(
-        onPressed: () {
-          // ignore: avoid_print
-          print('Go to add product screen');
-        },
-        icon: const Icon(Icons.add));
+      icon: const Icon(Icons.add),
+      onPressed: () {
+        Navigator.of(context).pushNamed(
+          EditProductScreen.routeName,
+        );
+      },
+    );
   }
 }

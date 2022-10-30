@@ -1,4 +1,4 @@
-import 'package:myshop/models/product.dart';
+// import 'package:myshop/models/product.dart';
 import 'cart_item.dart';
 
 class OrderItem {

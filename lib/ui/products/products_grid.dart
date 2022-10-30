@@ -11,9 +11,6 @@ class ProductsGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final productsManager = ProductsManager();
-    // final products =
-    //     showFavorites ? productsManager.favoriteItems : productsManager.items;
     final products = context.select<ProductsManager, List<Product>>(
         (productsManager) => showFavorites
             ? productsManager.favoriteItems

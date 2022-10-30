@@ -34,19 +34,21 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
   }
 
   Widget buildShoppingCartIcon() {
-    return Consumer<CartManager>(builder: (ctx, cartManager, child) {
-      return TopRightBadge(
-        data: cartManager.productCount,
-        child: IconButton(
-          icon: const Icon(
-            Icons.shopping_cart,
+    return Consumer<CartManager>(
+      builder: (ctx, cartManager, child) {
+        return TopRightBadge(
+          data: cartManager.productCount,
+          child: IconButton(
+            icon: const Icon(
+              Icons.shopping_cart,
+            ),
+            onPressed: () {
+              Navigator.of(context).pushNamed(CartScreen.routeName);
+            },
           ),
-          onPressed: () {
-            Navigator.of(context).pushNamed(CartScreen.routeName);
-          },
-        ),
-      );
-    });
+        );
+      },
+    );
   }
 
   Widget buildProductFilterMenu() {
